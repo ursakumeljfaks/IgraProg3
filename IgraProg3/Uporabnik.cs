@@ -20,6 +20,42 @@ namespace IgraProg3
             Cas = cas;
         }
 
+        public void UstvariBazoCeJeNi()
+        {
+            if (!File.Exists("baza.sqlite"))
+            {
+                SQLiteConnection.CreateFile("baza.sqlite");
+            }
+
+            using (var conn = new SQLiteConnection(povezovalniNiz))
+            {
+                conn.Open();
+
+                using (var cmd = new SQLiteCommand(conn))
+                {
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS Uporabniki (
+                            username TEXT NOT NULL,
+                            poskusi INTEGER NOT NULL,
+                            cas INTEGER NOT NULL
+                        )";
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (var cmd = new SQLiteCommand(conn))
+                {
+                    cmd.CommandText = @"
+                        CREATE TABLE IF NOT EXISTS Rezultati (
+                            username TEXT NOT NULL,
+                            tocke INTEGER NOT NULL
+                        )";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
         /// <summary>
         /// metoda pobrise vse rezultate v tabelah Uporabniki in Rezultati
         /// </summary>

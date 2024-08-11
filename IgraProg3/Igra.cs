@@ -73,11 +73,12 @@ namespace IgraProg3
             }
             // dodamo novega uporabnika v bazo oz posodobimo rezultat
             Uporabnik novUporabnik = new Uporabnik(vzdevek, stPoskusov, pretecenCas);
+            novUporabnik.UstvariBazoCeJeNi();
             novUporabnik.dodaj();
             // ustvarimo form izpis rezultatov
             IzpisRezultatov rezultati = new IzpisRezultatov(vzdevek, stPoskusov, pretecenCas);
             // zvok aplavza za konec igre
-            soundPlayer = new SoundPlayer("applause_sound.wav");
+            soundPlayer = new SoundPlayer(Properties.Resources.applause_sound);//new SoundPlayer("applause_sound.wav");
             soundPlayer.Play();
             // ustavimo timer igre
             timerIgre.Stop();
@@ -184,7 +185,7 @@ namespace IgraProg3
             if (prviKlik.Tag.ToString() == drugiKlik.Tag.ToString())
             {
                 // resetira oba labela prviKlik in drugiKlik ter predvaja zvok za uspešnost 
-                soundPlayer = new SoundPlayer("correct_sound.wav");
+                soundPlayer = new SoundPlayer(Properties.Resources.correct_sound);//new SoundPlayer("correct_sound.wav");
                 soundPlayer.Play();
                 prviKlik = null;
                 drugiKlik = null;
@@ -192,7 +193,7 @@ namespace IgraProg3
             else // če para nismo našli
             {
                 // predvajamo zvok, ker nismo našli para
-                soundPlayer = new SoundPlayer("error_sound.wav");
+                soundPlayer = new SoundPlayer(Properties.Resources.error_sound); //new SoundPlayer("error_sound.wav");
                 soundPlayer.Play();
                 // pričnemo timer1, ki pokliče dogodek Tick, kjer se resetirajo slike in prviKlik ter drugiKlik (po domače s tem poskrbimo, da se skrijejo vse slikic)
                 timer1.Start();

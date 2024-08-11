@@ -22,11 +22,13 @@ namespace IgraProg3
             InitializeComponent();
             if (obstojSlik() is true)
             {
+                igrajGumb.Enabled = true;
                 obstojSlikTextBox.Text = "Imenik slik lahko zamenjaš!";
                 slikeButton.Text = "Zamenjaj imenik";
             }
             else
             {
+                igrajGumb.Enabled = false;
                 obstojSlikTextBox.Text = "V programu je imenik slik prazen!";
                 slikeButton.Text = "Naloži imenik";
             }
@@ -134,6 +136,7 @@ namespace IgraProg3
             // po nalozenem imeniku pise na gumbu, da slikice zamenjamo
             if (obstojSlik() is true)
             {
+                igrajGumb.Enabled = true;
                 obstojSlikTextBox.Text = "Slike lahko zamenjaš!";
                 slikeButton.Text = "Zamenjaj imenik slik!";
             }
